@@ -43,26 +43,26 @@ class Artwork:
         return priority
 
     def __lt__(self, other):
-        return self.priority < other.priority
+        return self.priority > other.priority
 
 class ArtworkMaintenance:
     def __init__(self):
-        self.artworks = []
+        self.heap = []
 
     def add_artwork(self, artwork):
-        self.artworks.append(artwork)
-        self.artworks = sorted(self.artworks, key=lambda x: x.priority, reverse=True)
+        heapq.heappush(self.heap, (artwork.priority, artwork))
 
     def remove_artwork(self, artwork_name):
-        for i, artwork in enumerate(self.artworks):
-            if artwork.name == artwork_name:
-                del self.artworks[i]
+        for i, (priority, art) in enumerate(self.heap):
+            if art.name == artwork_name:
+                del self.heap[i]
+                heapq.heapify(self.heap)  # Rebuild heap after removal
                 return True
         return False
 
     def get_highest_priority(self):
-        if self.artworks:
-            highest_priority_artwork = self.artworks.pop(0)
+        if self.heap:
+            _, highest_priority_artwork = heapq.heappop(self.heap)
             return highest_priority_artwork
         else:
             return None
@@ -128,12 +128,19 @@ while True:
             else:
                 print(f"{artwork_name} 작품을 찾을 수 없습니다.")
         elif delete_input.lower() == 'n':
-            highest_priority_artwork = maintenance.get_highest_priority()
-            while highest_priority_artwork:
-                print(f"Highest priority artwork: {highest_priority_artwork.name}, Priority: {highest_priority_artwork.priority}")
+            highest_priority_artworks = []
+            while True:
                 highest_priority_artwork = maintenance.get_highest_priority()
-            break
-        else:
-            print("잘못된 입력입니다. 다시 시도해주세요.")
+                if highest_priority_artwork:
+                    highest_priority_artworks.append(highest_priority_artwork)
+                else:
+                    break
+        highest_priority_artworks.reverse()
+        for artwork in highest_priority_artworks:
+            print(f"Highest priority artwork: {artwork.name}, Priority: {artwork.priority}")
+
+        break
     else:
         print("잘못된 입력입니다. 다시 시도해주세요.")
+else:
+    print("잘못된 입력입니다. 다시 시도해주세요.")
