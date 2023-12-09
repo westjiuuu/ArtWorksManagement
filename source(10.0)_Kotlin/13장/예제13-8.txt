@@ -1,0 +1,44 @@
+package com.cookandroid.project13
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.SeekBar
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+
+    public override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        var pb1: ProgressBar
+        var btnInc: Button
+        var btnDec: Button
+
+        pb1 = findViewById<ProgressBar>(R.id.progressBar1)
+        btnInc = findViewById<Button>(R.id.btnInc)
+        btnDec = findViewById<Button>(R.id.btnDec)
+
+        btnInc.setOnClickListener {
+            pb1.incrementProgressBy(10)
+        }
+
+        btnDec.setOnClickListener {
+            pb1.incrementProgressBy(-10)
+        }
+
+        var tvSeek = findViewById<TextView>(R.id.tvSeek)
+        var seekBar1 = findViewById<SeekBar>(R.id.seekBar1)
+
+        seekBar1.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onStopTrackingTouch(seekBar: SeekBar) {}
+            override fun onStartTrackingTouch(seekBar: SeekBar) {}
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                tvSeek.text = "ม๘วเทü : $progress %"
+            }
+        })
+
+    }
+}

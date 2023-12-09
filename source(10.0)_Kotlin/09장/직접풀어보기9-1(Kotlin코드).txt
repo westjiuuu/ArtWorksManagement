@@ -1,0 +1,51 @@
+package com.cookandroid.self9_1
+
+import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.RectF
+import android.os.Bundle
+import android.view.View
+
+class MainActivity : AppCompatActivity() {
+
+    public override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(MyGraphicView(this))
+    }
+
+    private class MyGraphicView(context: Context) : View(context) {
+
+        override fun onDraw(canvas: Canvas) {
+            super.onDraw(canvas)
+            val paint = Paint()
+            paint.isAntiAlias = true
+
+            paint.strokeWidth = 30f
+            canvas.drawLine(30f, 30f, 300f, 30f, paint)
+
+            paint.strokeCap = Paint.Cap.ROUND
+            canvas.drawLine(30f, 80f, 300f, 80f, paint)
+
+            val rectF = RectF()
+
+            rectF.set(60f, 120f, (60 + 200).toFloat(), (100 + 100).toFloat())
+            canvas.drawOval(rectF, paint)
+
+            rectF.set(60f, 170f, (60 + 100).toFloat(), (170 + 100).toFloat())
+            canvas.drawArc(rectF, 40f, 110f, true, paint)
+
+            paint.color = Color.BLUE
+            rectF.set(60f, 280f, (60 + 100).toFloat(), (280 + 100).toFloat())
+            canvas.drawRect(rectF, paint)
+
+            paint.color = Color.argb(0x88, 0xff, 0x00, 0x00)
+            rectF.set(90f, 310f, (90 + 100).toFloat(), (310 + 100).toFloat())
+            canvas.drawRect(rectF, paint)
+
+        }
+    }
+
+}

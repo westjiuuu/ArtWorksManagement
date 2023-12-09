@@ -1,0 +1,24 @@
+package com.cookandroid.project7_2
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.LinearLayout
+
+class MainActivity : AppCompatActivity() {
+    lateinit  var baseLayout : LinearLayout
+    lateinit  var button1 : Button
+    lateinit  var button2 : Button
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        title = "배경색 바꾸기(컨텍스트 메뉴)"
+        baseLayout = findViewById<LinearLayout>(R.id.baseLayout) as LinearLayout
+        button1 = findViewById<Button>(R.id.button1) as Button
+        registerForContextMenu(button1)
+        button2 = findViewById<Button>(R.id.button2) as Button
+        registerForContextMenu(button2)
+    }
+    
+}

@@ -1,0 +1,32 @@
+package com.cookandroid.project5_2
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+
+    lateinit internal var edit1 : EditText
+    lateinit internal var edit2 : EditText
+    lateinit internal var btnAdd : Button
+    lateinit internal var btnSub : Button
+    lateinit internal var btnMul : Button
+    lateinit internal var btnDiv : Button
+    lateinit internal var textResult : TextView
+    lateinit internal var num1 : String
+    lateinit internal var num2 : String
+    internal var result : Int? = null
+
+    // 10개 숫자 버튼 배열
+    internal var numButtons  = ArrayList<Button>(10)
+    // 10개 숫자 버튼의 id 값 배열
+    internal var numBtnIDs = arrayOf(R.id.BtnNum0, R.id.BtnNum1, R.id.BtnNum2, R.id.BtnNum3, R.id.BtnNum4, R.id.BtnNum5, R.id.BtnNum6, R.id.BtnNum7, R.id.BtnNum8, R.id.BtnNum9)
+    internal var i : Int = 0 // 증가값 용도
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+}

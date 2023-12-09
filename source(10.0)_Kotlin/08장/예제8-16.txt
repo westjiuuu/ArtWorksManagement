@@ -1,0 +1,9 @@
+package com.cookandroid.project8_2
+
+import android.content.Context
+import android.util.AttributeSet
+import android.view.View
+
+class myPictureView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
+
+}

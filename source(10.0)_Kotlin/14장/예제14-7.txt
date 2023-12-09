@@ -1,0 +1,22 @@
+package com.cookandroid.project14_2
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.EditText
+import android.widget.ImageView
+
+class MainActivity : AppCompatActivity() {
+    lateinit var ivBattery: ImageView
+    lateinit var edtBattery: EditText
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        title = "배터리 상태 체크"
+
+        ivBattery = findViewById<ImageView>(R.id.ivBattery)
+        edtBattery = findViewById<EditText>(R.id.edtBattery)
+        
+    }
+    
+}

@@ -1,0 +1,30 @@
+package com.cookandroid.project6_1
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import android.widget.*
+
+class MainActivity : AppCompatActivity() {
+    lateinit var chrono : Chronometer
+    lateinit var btnStart : Button
+    lateinit var btnEnd : Button
+    lateinit var rdoCal : RadioButton
+    lateinit var rdoTime : RadioButton
+    lateinit var calView : CalendarView
+    lateinit var tPicker : TimePicker
+    lateinit var tvYear : TextView
+    lateinit var tvMonth : TextView
+    lateinit var tvDay : TextView
+    lateinit var tvHour : TextView
+    lateinit var tvMinute : TextView
+    var selectYear : Int = 0
+    var selectMonth : Int = 0
+    var selectDay : Int = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+    }
+}

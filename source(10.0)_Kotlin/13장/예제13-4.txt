@@ -1,0 +1,39 @@
+package com.cookandroid.project13_1
+
+import android.content.Context
+import android.media.MediaPlayer
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.os.Environment
+import android.widget.Button
+import android.widget.ListView
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.core.app.ActivityCompat
+import java.util.ArrayList
+
+@Suppress("deprecation")
+class MainActivity : AppCompatActivity() {
+
+    var listViewMP3: ListView? = null
+    lateinit var btnPlay: Button
+    lateinit var btnStop: Button
+    lateinit var tvMP3: TextView
+    lateinit var pbMP3: ProgressBar
+
+    lateinit var mp3List: ArrayList<String>
+    lateinit var selectedMP3: String
+
+    var mp3Path = Environment.getExternalStorageDirectory().path + "/"
+    lateinit var mPlayer: MediaPlayer
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        title = "간단 MP3 플레이어"
+        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), Context.MODE_PRIVATE)
+
+
+
+    }
+}

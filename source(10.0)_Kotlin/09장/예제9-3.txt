@@ -1,0 +1,47 @@
+package com.cookandroid.project9_1
+
+import android.content.Context
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    companion object {
+        const val LINE = 1
+        const val CIRCLE = 2
+        var curShape = LINE
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(MyGraphicView(this))
+        title = "간단 그림판"
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?) : Boolean {
+        super.onCreateOptionsMenu(menu)
+        menu!!.add(0, 1, 0, "선 그리기")
+        menu!!.add(0, 2, 0, "원 그리기")
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) : Boolean {
+        when (item.itemId) {
+            1 -> {
+                curShape = LINE // 선
+                return true
+            }
+            2 -> {
+                curShape = CIRCLE // 원
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private class MyGraphicView(context: Context) : View(context) {
+
+    }
+}

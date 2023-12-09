@@ -1,0 +1,59 @@
+package com.cookandroid.self13_2
+
+import androidx.appcompat.app.AppCompatActivity
+import android.media.MediaPlayer
+import android.os.Bundle
+import android.os.SystemClock
+import android.view.View
+import android.widget.SeekBar
+import android.widget.Switch
+
+class MainActivity : AppCompatActivity() {
+
+    lateinit var mPlayer: MediaPlayer
+    lateinit var pbMP3: SeekBar
+    lateinit var switch1: Switch
+
+    public override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        pbMP3 = findViewById<SeekBar>(R.id.pbMP3)
+
+        switch1 = findViewById<Switch>(R.id.switch1)
+        switch1.setOnClickListener {
+            if (switch1.isChecked == true) {
+                mPlayer = MediaPlayer.create(applicationContext, R.raw.song1)
+                mPlayer.start()
+                makeThread()
+            } else {
+                mPlayer.stop()
+            }
+        }
+
+        pbMP3.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onStopTrackingTouch(seekBar: SeekBar) {}
+            override fun onStartTrackingTouch(seekBar: SeekBar) {}
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                if (fromUser) {
+                    mPlayer.seekTo(progress)
+                }
+            }
+        })
+
+    }
+
+    fun makeThread() {
+        object : Thread() {
+            override fun run() {
+                // 음악이 계속 작동 중이라면
+                while (mPlayer.isPlaying) {
+                    pbMP3.max = mPlayer.duration // 음악의 시간을 최대로 설정
+                    pbMP3.progress = mPlayer.currentPosition // 현재 위치를 지정
+                    SystemClock.sleep(100)
+                }
+                pbMP3.progress = 0
+            }
+        }.start()
+    }
+}
